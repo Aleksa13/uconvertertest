@@ -46,19 +46,23 @@ public class UniversalConverter {
 
     @Command
     public double convert(double value) {
-        if (sourceConverter == null ){
-            System.out.print("Please enter source for value ");
-            return value;
-        }else
-        if (targetConverter == null ) {
-            System.out.print("Please enter target for value");
-            return value;
-
-        } else {
+        if (sourceConverter == null || targetConverter == null){
+            System.out.println("Error! Something is missing!");
+            throw new IllegalStateException( "source or target converter is not set");
+        }
+//        if (sourceConverter == null ){
+//            System.out.print("Please enter source for value ");
+//            return value;
+//        }else
+//        if (targetConverter == null ) {
+//            System.out.print("Please enter target for value");
+//            return value;
+//
+//        } else {
             double siValue = sourceConverter.toSI(value);
             return targetConverter.fromSI(siValue);
         }
 
     }
-}
+
 
